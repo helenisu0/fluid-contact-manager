@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import NavBar from'./components/navBar/NavBar';
+import ContactList from './components/contacts/ContactList/ContactList';
+import EditContact from './components/contacts/EditContact/EditContact';
+import AddContact from './components/contacts/AddContact/AddContact'
+import{Routes, Route, Navigate} from 'react-router-dom' 
+import ViewContact from './components/contacts/ViewContact/ViewContact';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
+let App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <>
+     <ToastContainer/>
+      <NavBar/>
+      <Routes>
+        <Route path={'/'}  element={<Navigate to={'/contacts/lists'}/>}/>
+        <Route path={'/contacts/lists'} element={<ContactList/>} />
+        <Route path={'/contacts/add'} element={<AddContact/>} />
+        <Route path={'/contacts/view/:id'} element={<ViewContact/>} />
+        <Route path={'/contacts/edit/:id'} element={<EditContact/>} />
+      </Routes>
+
+   
+   
+   
+    </>
+      
+      
+
+    
+ 
   );
 }
 
